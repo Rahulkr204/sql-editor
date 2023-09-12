@@ -1,18 +1,24 @@
 # Atlan - SQL Editor
 
-This is an SQL editor built specifically for the frontend task of Atlan's interview. This particular project is built using **[React](https://reactjs.org/)**, and the **[React Bootstrap](https://react-bootstrap.github.io/)** front-end framework. It originally contains a data dump borrowed from [this](https://github.com/graphql-compose/graphql-compose-examples/tree/master/examples/northwind/data/csv) repository. The sections below detail the salient features of this project.
+This is an SQL editor built specifically for the frontend task of Atlan's interview. This particular project is built using **[React](https://reactjs.org/)**, **[React-CodeMirror](https://www.npmjs.com/package/@uiw/react-codemirror)** and the **[Antd](https://ant.design/)** library. We have used data from [here](https://github.com/graphql-compose/graphql-compose-examples/tree/master/examples/northwind/data/csv) repository. The sections below detail the salient features of this project.
 
 ## Features
 
-<!-- 1. **Tab Based Interface**: An easy-to-use tab based interface allows the user to switch between multiple queries at once. Want to view a table _and_ run a query at the same time? Sure, go right ahead. Each tab maintains its own separate state, so as long as you don't reload the page, you can jump right back to where you left a tab.
-2. **Dynamic Table Views**: The list of tables is fetched at first, but the actual data isn't. Only when you click on the name of a table, are the entries fetched. Keeping the application lightweight, and blazing fast.
-3. **Defining Custom Types for Columns**: Each person is not the same; similarly, each column is not the same. You might want to specify certain processing functions: want to parse an image, or return an integer. You can do all this, and the table will display the processed result.
-4. **Result Statistics**: The user will also be alerted about the time taken to complete a query, giving the user a measure to check the performance of the system.
-5. **Ability to save the results as JSON, XML, or CSV**: This application includes functionality to save the results of a query in JSON, XML, and CSV formats. _**Pro Tip**: You can also save a query,so that you don't have to type the same thing twice!_ -->
+1. **Interface**: Used Layout with SidePanel and Content area for showing selected tab content. I've used tabs to show query section since user can open any number of tabs for querying. Result section is maintained separately for each tab.
+2. **Data Source**: The list of tables are stored as json. We can view the `fieldNames` and `fieldType` against each entry in this list.
+3. **Running/Publishing Query**: We can publish/run query and see published in the `Published Section`
+4. **Results Section**: We've limited total entries for result with a `Select`, when we select All, we use Virtualized Table to render large scale results. The user will also be alerted about the time taken to complete a query, giving the user a measure to check the performance of the system. I've provided two more section `Schedule` & `Documentation` for adding more functionality to queries.
+5. We've used 
+6. **Ability to save the results as JSON, XML, or CSV**: This application includes functionality to save the results of a query in JSON, XML, and CSV formats.
+
+### Yet to be implemented
+1. Search Data Source
+2. Deleting published query
+3. Export results to JSON/CSV
 
 ## Performance Audit
 
-- **[GTmetrix](https://gtmetrix.com/)**: The fully loaded time is **1.1 seconds**, with the first contentful paint at **795 ms** with this site receives an A grade.
+- **[GTmetrix](https://gtmetrix.com/)**: The fully loaded time is **`1.1 seconds`**, with the first contentful paint at **`795 ms`** with this site receives an A grade.
 The exact metrics are:
   - **First Contentful Paint**: `795ms`
   - **Speed Index**: `851ms`

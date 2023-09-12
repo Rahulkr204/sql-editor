@@ -4,6 +4,8 @@ import { List } from "antd";
 import Editor from "../Editor";
 import { QueryContext } from "../../context/queryContext";
 
+import "./PublishedQueries.css";
+
 function PublishedQueries() {
     const { publishedQueryList, setActiveKey, queries, setQueries, activeKey } =
         useContext(QueryContext);
@@ -40,7 +42,10 @@ function PublishedQueries() {
                 bordered
                 dataSource={publishedQueryList}
                 renderItem={(item) => (
-                    <List.Item onClick={() => showQuery(item)}>
+                    <List.Item
+                        className="publishedItem"
+                        onClick={() => showQuery(item)}
+                    >
                         {item.name}
                     </List.Item>
                 )}

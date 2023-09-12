@@ -1,25 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
     DesktopOutlined,
     PieChartOutlined,
     NotificationTwoTone,
+    UserOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Badge } from "antd";
-
+import { Layout, Menu, Avatar, Space } from "antd";
 // components
 import Editor from "./components/Editor";
 import DataSourceTree from "./components/DataSourceTree";
 import Query from "./pages/Query";
-
 // context
 import { QueryContext } from "./context/queryContext";
-
 // data
 import { publishedQueries } from "./data/publishedQueries";
 
 import "./App.css";
-
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
     return {
@@ -33,6 +30,14 @@ function getItem(label, key, icon, children) {
 const items = [
     getItem("Data Sources", "1", <PieChartOutlined />),
     getItem("Published", "2", <DesktopOutlined />),
+];
+const bottomItems = [
+    getItem(
+        "Notification",
+        "3",
+        <NotificationTwoTone twoToneColor="#2026D2" />
+    ),
+    getItem("User Profile", "4", <UserOutlined style={{ color: "#2026D2" }} />),
 ];
 
 const App = () => {
@@ -66,18 +71,28 @@ const App = () => {
         >
             <Layout className="layoutContainer">
                 <Sider collapsed={true} theme="light" className="appSider">
-                    <div className="logoContainer">
-                        <img
-                            src="https://img.stackshare.io/service/40523/default_c89319f77677b9a9c4a5ceed791da7fcf3148832.png"
-                            alt="atlan"
+                    <div>
+                        <div className="logoContainer">
+                            <img
+                                src="https://img.stackshare.io/service/40523/default_c89319f77677b9a9c4a5ceed791da7fcf3148832.png"
+                                alt="atlan"
+                            />
+                        </div>
+                        <Menu
+                            theme="light"
+                            defaultSelectedKeys={["1"]}
+                            mode="inline"
+                            items={items}
                         />
                     </div>
-                    <Menu
-                        theme="light"
-                        defaultSelectedKeys={["1"]}
-                        mode="inline"
-                        items={items}
-                    />
+                    <div>
+                        <Menu
+                            theme="light"
+                            defaultSelectedKeys={["1"]}
+                            mode="inline"
+                            items={bottomItems}
+                        />
+                    </div>
                 </Sider>
                 <Layout className="appLayout">
                     <Sider

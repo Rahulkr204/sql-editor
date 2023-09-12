@@ -25,9 +25,9 @@ const DataSourceTree = () => {
             />
             <Tree
                 showLine
-                switcherIcon={<DownOutlined />}
                 defaultExpandAll
-                treeData={customerSchema}
+                switcherIcon={<DownOutlined />}
+                treeData={ordersSchema}
                 titleRender={(item) => (
                     <TitleRenderer title={item?.title} type={item?.type} />
                 )}
@@ -35,7 +35,7 @@ const DataSourceTree = () => {
             <Tree
                 showLine
                 switcherIcon={<DownOutlined />}
-                treeData={ordersSchema}
+                treeData={customerSchema}
                 titleRender={(item) => (
                     <TitleRenderer title={item?.title} type={item?.type} />
                 )}

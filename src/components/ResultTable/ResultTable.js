@@ -45,7 +45,12 @@ const ResultTable = () => {
         const dataSource =
             selectedEntries !== "All" ? data?.slice(0, selectedEntries) : data;
         return dataSource;
-    }, [activeKey]);
+    }, [activeKey, selectedEntries]);
+
+    const handleEntries = (params) => {
+        const { value } = params;
+        setSelectedEntries(value);
+    };
 
     return (
         <div className="resultContainer">
@@ -60,13 +65,14 @@ const ResultTable = () => {
                     </div>
                 </Space>
                 <Space wrap>
+                    <span>Limit Entries</span>
                     <Select
                         defaultValue={"10"}
                         value={selectedEntries}
                         style={{
                             width: 120,
                         }}
-                        onChange={setSelectedEntries}
+                        onChange={handleEntries}
                         options={[
                             {
                                 value: "10",
