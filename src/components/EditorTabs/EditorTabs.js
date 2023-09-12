@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { Tabs } from "antd";
 
 import Editor from "../Editor";
@@ -27,7 +27,7 @@ const EditorTabs = ({ setItems, setActiveKey, activeKey, tabs }) => {
         setActiveKey(newActiveKey);
     };
 
-    const remove = (targetKey) => {
+    const remove = useCallback((targetKey) => {
         let newActiveKey = activeKey;
         let lastIndex = -1;
         tabs.forEach((item, i) => {
@@ -45,16 +45,16 @@ const EditorTabs = ({ setItems, setActiveKey, activeKey, tabs }) => {
         }
         setItems(newPanes);
         setActiveKey(newActiveKey);
-    };
+    }, []);
 
-    const onEdit = (targetKey, action) => {
-        const isNotLastTab = targetKey > 3 && tabs.length > 1;
+    const onEdit = useCallback((targetKey, action) => {
+        const isNotLastTab = action === "remove" && tabs.length > 1;
         if (action === "add") {
             add();
         } else if (isNotLastTab) {
             remove(targetKey);
         }
-    };
+    }, []);
 
     return (
         <Tabs
@@ -67,4 +67,4 @@ const EditorTabs = ({ setItems, setActiveKey, activeKey, tabs }) => {
         />
     );
 };
-export default EditorTabs;
+export default React.memo(EditorTabs);

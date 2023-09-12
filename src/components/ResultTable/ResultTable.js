@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import { Button, Space, Table, Select } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 
@@ -25,7 +25,7 @@ const ResultTable = () => {
     const { activeKey } = useContext(QueryContext);
     const [selectedEntries, setSelectedEntries] = useState("10");
 
-    const getData = () => {
+    const getData = useCallback(() => {
         let source = null;
         switch (dataToActiveKey[activeKey]) {
             case "orders":
@@ -45,7 +45,7 @@ const ResultTable = () => {
         const dataSource =
             selectedEntries !== "All" ? data?.slice(0, selectedEntries) : data;
         return dataSource;
-    };
+    }, [activeKey]);
 
     return (
         <div className="resultContainer">
@@ -107,4 +107,4 @@ const ResultTable = () => {
     );
 };
 
-export default ResultTable;
+export default React.memo(ResultTable);

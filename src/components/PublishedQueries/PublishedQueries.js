@@ -49,4 +49,4 @@ function PublishedQueries() {
     );
 }
 
-export default PublishedQueries;
+export default React.memo(PublishedQueries);

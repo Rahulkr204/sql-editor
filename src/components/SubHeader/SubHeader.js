@@ -5,4 +5,4 @@ function SubHeader({ text }) {
     return <div className="subheader">{text}</div>;
 }
 
-export default SubHeader;
+export default React.memo(SubHeader);

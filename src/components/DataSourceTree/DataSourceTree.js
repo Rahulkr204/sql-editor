@@ -1,6 +1,6 @@
 import React from "react";
 import { DownOutlined } from "@ant-design/icons";
-import { Tree, Input, Divider } from "antd";
+import { Tree, Input } from "antd";
 
 import SubHeader from "../SubHeader";
 import PublishedQueries from "../PublishedQueries";
@@ -60,4 +60,4 @@ const TitleRenderer = ({ title, type }) => {
     );
 };
 
-export default DataSourceTree;
+export default React.memo(DataSourceTree);
