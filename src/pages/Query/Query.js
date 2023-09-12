@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, Suspense, lazy } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Button, Space, Tabs, message } from "antd";
 import { PlayCircleTwoTone } from "@ant-design/icons";
 
@@ -15,18 +15,14 @@ function Query() {
         useContext(QueryContext);
     const [selectedTab, setSelectedTab] = useState("1");
 
-    // const EditorTabs = lazy(() => import("../../components/EditorTabs"));
-
     return (
         <div className="queryContainer">
-            <Suspense fallback={<div>Loading...</div>}>
-                <EditorTabs
-                    tabs={[...queries]}
-                    setActiveKey={setActiveKey}
-                    setItems={setQueries}
-                    activeKey={activeKey}
-                />
-            </Suspense>
+            <EditorTabs
+                tabs={[...queries]}
+                setActiveKey={setActiveKey}
+                setItems={setQueries}
+                activeKey={activeKey}
+            />
             <EditorControls
                 setControlTab={setSelectedTab}
                 selectedTab={selectedTab}
