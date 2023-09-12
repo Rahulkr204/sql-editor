@@ -47,8 +47,7 @@ const ResultTable = () => {
         return dataSource;
     }, [activeKey, selectedEntries]);
 
-    const handleEntries = (params) => {
-        const { value } = params;
+    const handleEntries = (value) => {
         setSelectedEntries(value);
     };
 
@@ -106,7 +105,7 @@ const ResultTable = () => {
                     y: 400,
                 }}
                 rowKey={tableIdToActiveKey[activeKey]}
-                dataSource={getData(dataToActiveKey[activeKey])}
+                dataSource={getData()}
                 pagination={false}
             />
         </div>
