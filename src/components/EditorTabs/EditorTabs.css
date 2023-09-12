@@ -1,0 +1,16 @@
+.editorTabs {
+    margin-top: 0.8rem;
+    width: 100%;
+    .ant-tabs-nav {
+        background-color: white;
+        margin: 0;
+        outline: none;
+    }
+    .ant-tabs-nav-wrap {
+        background-color: #f5f5f5;
+    }
+    .ant-tabs-nav-add {
+        background-color: #fff !important;
+        border: 1px solid #e5e5e5 !important;
+    }
+}

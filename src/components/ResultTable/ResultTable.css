@@ -1,0 +1,11 @@
+.resultContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.resultHeader {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.4rem 0;
+}

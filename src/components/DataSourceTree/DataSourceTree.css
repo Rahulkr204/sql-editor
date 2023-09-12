@@ -1,0 +1,28 @@
+.sourceTreeContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.titleRenderer {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.titleRenderer:hover .titleType {
+    display: block;
+}
+
+.dataSourceSearch {
+    margin: 0.8rem 0;
+}
+
+.titleType {
+    display: none;
+    position: absolute;
+    color: #cccccc;
+    top: 0;
+    left: 105%;
+    z-index: 1;
+    font-size: 12px;
+    font-style: italic;
+}

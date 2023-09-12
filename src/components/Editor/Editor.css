@@ -1,0 +1,9 @@
+.editorContainer {
+    width: 100%;
+    margin-bottom: 1.2rem;
+    .cm-editor {
+        outline: none;
+        border: 1px solid #eee;
+
+    }
+}

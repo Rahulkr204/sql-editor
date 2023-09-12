@@ -36,3 +36,42 @@
     transform: rotate(360deg);
   }
 }
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #fff;
+}
+
+.appSider {
+  border-right: 1px solid #dbdbdb;
+}
+
+.layoutContainer {
+  display: flex;
+  /* background-color: #eee; */
+  height: 100vh;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoContainer img {
+  width: 64px;
+  height: 64px;
+}
+
+.contentContainer {
+  padding: 0 1.2rem;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+.dataSourceSider {
+  background-color: #eee;
+  border-right: 1px solid #dbdbdb;
+  padding: 0 0.8rem;
+}
