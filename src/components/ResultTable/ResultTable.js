@@ -21,12 +21,31 @@ const tableIdToActiveKey = {
     3: "productID",
 };
 
-const ResultTable = () => {
-    const { activeKey } = useContext(QueryContext);
+const limitItems = [
+    {
+        value: "10",
+        label: "10",
+    },
+    {
+        value: "50",
+        label: "50",
+    },
+    {
+        value: "100",
+        label: "100",
+    },
+    {
+        value: "All",
+        label: "All",
+    },
+];
+
+const ResultTable = ({ activeKey }) => {
     const [selectedEntries, setSelectedEntries] = useState("10");
 
     const getData = useCallback(() => {
         let source = null;
+        console.log(activeKey);
         switch (dataToActiveKey[activeKey]) {
             case "orders":
                 source = orders;
@@ -44,6 +63,7 @@ const ResultTable = () => {
         const data = source ? source.map((item) => flattenObject(item)) : [];
         const dataSource =
             selectedEntries !== "All" ? data?.slice(0, selectedEntries) : data;
+        console.log(source, dataSource);
         return dataSource;
     }, [activeKey, selectedEntries]);
 
@@ -51,51 +71,13 @@ const ResultTable = () => {
         setSelectedEntries(value);
     };
 
+    console.log("Here", activeKey);
     return (
-        <div className="resultContainer">
-            <div className="resultHeader">
-                <Space wrap>
-                    <div>Unsaved draft</div>
-                    <div>
-                        {`(${selectedEntries} rows returned in ${Math.random(
-                            2,
-                            4
-                        ).toFixed(2)} secs)`}
-                    </div>
-                </Space>
-                <Space wrap>
-                    <span>Limit Entries</span>
-                    <Select
-                        defaultValue={"10"}
-                        value={selectedEntries}
-                        style={{
-                            width: 120,
-                        }}
-                        onChange={handleEntries}
-                        options={[
-                            {
-                                value: "10",
-                                label: "10",
-                            },
-                            {
-                                value: "50",
-                                label: "50",
-                            },
-                            {
-                                value: "100",
-                                label: "100",
-                            },
-                            {
-                                value: "All",
-                                label: "All",
-                            },
-                        ]}
-                    />
-                    <Button type="text">
-                        Export <DownloadOutlined />{" "}
-                    </Button>
-                </Space>
-            </div>
+        <div className="resultComponent">
+            <ResultHeader
+                selectedEntries={selectedEntries}
+                handleEntries={handleEntries}
+            />
             <Table
                 bordered={true}
                 virtual={selectedEntries === "All"}
@@ -108,6 +90,37 @@ const ResultTable = () => {
                 dataSource={getData()}
                 pagination={false}
             />
+        </div>
+    );
+};
+
+const ResultHeader = ({ selectedEntries, handleEntries }) => {
+    return (
+        <div className="resultHeader">
+            <Space wrap>
+                <div>Unsaved draft</div>
+                <div>
+                    {`(${selectedEntries} rows returned in ${Math.random(
+                        2,
+                        4
+                    ).toFixed(2)} secs)`}
+                </div>
+            </Space>
+            <Space wrap>
+                <span>Limit Entries</span>
+                <Select
+                    defaultValue={"10"}
+                    value={selectedEntries}
+                    style={{
+                        width: 120,
+                    }}
+                    onChange={handleEntries}
+                    options={limitItems}
+                />
+                <Button type="text">
+                    Export <DownloadOutlined />{" "}
+                </Button>
+            </Space>
         </div>
     );
 };

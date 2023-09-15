@@ -1,6 +1,7 @@
 .editorTabs {
     margin-top: 0.8rem;
     width: 100%;
+    height: 50vh;
     .ant-tabs-nav {
         background-color: white;
         margin: 0;

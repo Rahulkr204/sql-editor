@@ -1,6 +1,6 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { DownOutlined } from "@ant-design/icons";
-import { Tree, Input } from "antd";
+import { Tree, Input, Skeleton } from "antd";
 
 import SubHeader from "../SubHeader";
 import PublishedQueries from "../PublishedQueries";
@@ -10,54 +10,53 @@ import "./DataSourceTree.css";
 
 const { Search } = Input;
 
+const MemoizedPublishedQueries = lazy(() => import("../PublishedQueries"));
+
 const DataSourceTree = () => {
     const onSearch = (value, _e, info) => console.log(info?.source, value);
     return (
         <div className="sourceTreeContainer">
             <SubHeader text="Published" />
-            <PublishedQueries />
+            <Suspense fallback={<Skeleton paragraph={4} />}>
+                <MemoizedPublishedQueries />
+            </Suspense>
 
             <SubHeader text="Data Sources" />
-            <Search
-                placeholder="Search source..."
-                onSearch={onSearch}
-                className="dataSourceSearch"
-            />
-            <Tree
-                showLine
-                defaultExpandAll
-                switcherIcon={<DownOutlined />}
-                treeData={ordersSchema}
-                titleRender={(item) => (
-                    <TitleRenderer title={item?.title} type={item?.type} />
-                )}
-            />
-            <Tree
-                showLine
-                switcherIcon={<DownOutlined />}
-                treeData={customerSchema}
-                titleRender={(item) => (
-                    <TitleRenderer title={item?.title} type={item?.type} />
-                )}
-            />
-            <Tree
-                showLine
-                switcherIcon={<DownOutlined />}
-                treeData={productSchema}
-                titleRender={(item) => (
-                    <TitleRenderer title={item?.title} type={item?.type} />
-                )}
-            />
+
+            <Suspense fallback={<Skeleton paragraph={10} />}>
+                <Search
+                    placeholder="Search source..."
+                    onSearch={onSearch}
+                    className="dataSourceSearch"
+                />
+                {renderTree(ordersSchema)}
+                {renderTree(customerSchema)}
+                {renderTree(productSchema)}
+            </Suspense>
         </div>
     );
 };
 
-const TitleRenderer = ({ title, type }) => {
+const renderTree = (treeData) => {
+    return (
+        <Tree
+            showLine
+            defaultExpandAll
+            switcherIcon={<DownOutlined />}
+            treeData={treeData}
+            titleRender={(item) => (
+                <MemoizedTitleRenderer title={item?.title} type={item?.type} />
+            )}
+        />
+    );
+};
+
+const MemoizedTitleRenderer = React.memo(({ title, type }) => {
     return (
         <div className="titleRenderer">
             {title} <span className="titleType">{type}</span>
         </div>
     );
-};
+});
 
 export default React.memo(DataSourceTree);

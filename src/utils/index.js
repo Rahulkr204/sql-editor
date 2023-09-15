@@ -12,4 +12,14 @@ function flattenObject(obj, parentKey = "") {
     return flattened;
 }
 
-export { flattenObject };
+function getMenuItem(label, key, icon, children) {
+    return {
+        key,
+        icon,
+        children,
+        label,
+    };
+}
+
+export { flattenObject, getMenuItem };
+
